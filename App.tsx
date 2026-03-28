@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-import { BottomNav, TabName } from '@/components/BottomNav';
+import { BottomNav, TabName } from '@/layout/BottomNav';
 import { ScreenContent } from '@/components/ScreenContent';
 
 import './global.css';

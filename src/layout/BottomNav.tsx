@@ -2,7 +2,12 @@ import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
-export type TabName = 'Dashboard' | 'Materials' | 'Customers' | 'Transactions' | 'Reports';
+export type TabName =
+  | 'Dashboard'
+  | 'Materials'
+  | 'Customers'
+  | 'Transactions'
+  | 'Reports';
 
 interface BottomNavProps {
   activeTab: TabName;
@@ -13,7 +18,11 @@ const tabs: { name: TabName; icon: (active: boolean) => React.ReactNode }[] = [
   {
     name: 'Dashboard',
     icon: (active) => (
-      <Ionicons name={active ? 'grid' : 'grid-outline'} size={22} color={active ? '#4F46E5' : '#9CA3AF'} />
+      <Ionicons
+        name={active ? 'grid' : 'grid-outline'}
+        size={22}
+        color={active ? '#4F46E5' : '#9CA3AF'}
+      />
     ),
   },
   {
@@ -58,19 +67,34 @@ const tabs: { name: TabName; icon: (active: boolean) => React.ReactNode }[] = [
   },
 ];
 
-export const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabPress }) => {
+export const BottomNav: React.FC<BottomNavProps> = ({
+  activeTab,
+  onTabPress,
+}) => {
   return (
-    <View className="flex-row border-t border-gray-200 bg-white px-2 pb-5 pt-2">
+    <View className="flex-row border-t border-gray-200 bg-white px-2 pt-2 pb-6">
       {tabs.map((tab) => {
         const isActive = activeTab === tab.name;
+
         return (
           <Pressable
             key={tab.name}
             onPress={() => onTabPress(tab.name)}
-            className="flex-1 items-center justify-center py-1">
+            className="flex-1 items-center justify-center py-1"
+          >
+            {isActive && (
+              <View className="absolute top-0 h-1 w-10 rounded-full bg-indigo-600" />
+            )}
+
             {tab.icon(isActive)}
+
             <Text
-              className={`mt-1 text-[10px] ${isActive ? 'font-semibold text-indigo-600' : 'text-gray-400'}`}>
+              className={`mt-1 text-[10px] ${
+                isActive
+                  ? 'font-semibold text-indigo-600'
+                  : 'text-gray-400'
+              }`}
+            >
               {tab.name}
             </Text>
           </Pressable>
